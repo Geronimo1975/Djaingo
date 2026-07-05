@@ -152,6 +152,22 @@ Django/app secrets (`SECRET_KEY`, DB password, Gemini/Twilio keys) live only in
   or a one-off `dumpdata`/`loaddata` if the user wants the demo content).
 - Staging environment (can add a `docker-compose.staging.yml` later).
 
+## 8b. Security hardening (pre-launch, from automated review)
+
+Pre-existing vulnerabilities in the ThemeForest template that MUST be fixed before
+the app is public on `djaingo.com`. Tracked here; addressed during implementation.
+
+| Sev | File | Issue | Fix |
+|-----|------|-------|-----|
+| HIGH | `aiwave/views/pages.py` `n8n_create_blog` | `@csrf_exempt` webhook trusts body `author_username` → author impersonation / unauth publish | Require `X-Webhook-Token` header, constant-time compare vs server secret; reject if missing |
+| HIGH | `aiwave/views/pages.py` | `markdown.markdown(content)` rendered with `|safe` → stored XSS | `bleach.clean()` with allowlist, or markdown + sanitizer |
+| HIGH | `wowdash_app/views/wowdash.py` `blogDelete` (+ other admin views) | No auth/authorization → IDOR, unauth deletion | `@login_required` + `@user_passes_test(is_staff)` on all admin views |
+| MED | `aiwave/views/authentication.py` | `redirect(next_url)` unvalidated → open redirect | `url_has_allowed_host_and_scheme(...)` before redirect |
+| MED | `wowdash_app/management/commands/populate_dummy_data.py` | Seeds placeholder secrets (`JWT_SECRET_KEY`, AWS, Stripe) | Remove from seed / gate behind `DEBUG`; never seed real secret keys |
+
+These are added to the implementation plan as a "harden template" work item that
+runs before (or alongside) the first production deploy.
+
 ## 9. Risks / open items
 
 - **DNS** must resolve to the VPS before first deploy (couldn't verify from local).
