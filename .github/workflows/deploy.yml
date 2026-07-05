@@ -1,0 +1,41 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Rsync source to VPS
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/id_deploy" \
+            --exclude '.git' --exclude '.github' --exclude '.env*' \
+            --exclude 'media' --exclude 'staticfiles' --exclude 'db.sqlite3' \
+            --exclude '__pycache__' --exclude 'docs' --exclude 'Documentation' \
+            ./ "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/djaingo/djaingo/"
+
+      - name: Build & restart stack
+        run: |
+          ssh -i ~/.ssh/id_deploy "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            'cd /home/djaingo/djaingo && \
+             docker compose -f docker-compose.prod.yml build && \
+             docker compose -f docker-compose.prod.yml up -d && \
+             docker compose -f docker-compose.prod.yml exec -T djaingo-web python manage.py migrate --noinput && \
+             docker compose -f docker-compose.prod.yml exec -T djaingo-web python manage.py collectstatic --noinput'
