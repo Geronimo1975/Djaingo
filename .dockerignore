@@ -1,0 +1,15 @@
+.git
+.github
+.env
+.env.prod
+db.sqlite3
+media
+staticfiles
+__pycache__
+*.pyc
+node_modules
+docs
+themeforest-*
+Documentation
+logs/*.log
+.DS_Store
