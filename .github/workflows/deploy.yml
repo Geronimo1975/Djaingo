@@ -36,6 +36,9 @@ jobs:
           ssh -i ~/.ssh/id_deploy "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
             'cd /home/djaingo/djaingo && \
              docker compose -f docker-compose.prod.yml build && \
-             docker compose -f docker-compose.prod.yml up -d && \
-             docker compose -f docker-compose.prod.yml exec -T djaingo-web python manage.py migrate --noinput && \
-             docker compose -f docker-compose.prod.yml exec -T djaingo-web python manage.py collectstatic --noinput'
+             docker compose -f docker-compose.prod.yml up -d --wait && \
+             docker compose -f docker-compose.prod.yml restart djaingo-nginx'
+          # migrate + collectstatic run inside the web container's own start command,
+          # so they are NOT repeated here (doing both concurrently caused an OOM/137).
+          # nginx is restarted so it re-resolves the (possibly recreated) web upstream,
+          # otherwise it keeps a stale container IP and returns 502.
