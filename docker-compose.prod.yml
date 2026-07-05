@@ -1,0 +1,109 @@
+services:
+  djaingo-web:
+    build: { context: ., dockerfile: Dockerfile }
+    container_name: djaingo-web
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py collectstatic --noinput &&
+             gunicorn Wowdash.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120 --access-logfile - --error-logfile -"
+    env_file: [.env.prod]
+    volumes:
+      - static_files:/app/staticfiles
+      - media_files:/app/media
+    depends_on:
+      djaingo-postgres: { condition: service_healthy }
+      djaingo-redis: { condition: service_healthy }
+    restart: unless-stopped
+    networks: [djaingo-internal, gethub-network]
+    labels: ["traefik.enable=false"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS -H 'Host: djaingo.com' http://localhost:8000/ >/dev/null || exit 1"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
+  djaingo-nginx:
+    image: nginx:alpine
+    container_name: djaingo-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - static_files:/usr/share/nginx/static:ro
+      - media_files:/usr/share/nginx/media:ro
+    depends_on: [djaingo-web]
+    restart: unless-stopped
+    networks: [djaingo-internal, gethub-network]
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.djaingo.rule=Host(`djaingo.com`) || Host(`www.djaingo.com`)"
+      - "traefik.http.routers.djaingo.entrypoints=websecure"
+      - "traefik.http.routers.djaingo.tls=true"
+      - "traefik.http.routers.djaingo.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.djaingo.middlewares=djaingo-chain"
+      - "traefik.http.middlewares.djaingo-chain.chain.middlewares=secure-headers@file,compress@file,rate-limit@file"
+      - "traefik.http.services.djaingo.loadbalancer.server.port=80"
+      - "traefik.docker.network=gethub_gethub-network"
+
+  djaingo-postgres:
+    image: postgres:16-alpine
+    container_name: djaingo-postgres
+    env_file: [.env.prod]
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes: [pg_data:/var/lib/postgresql/data]
+    restart: unless-stopped
+    networks: [djaingo-internal]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  djaingo-redis:
+    image: redis:7-alpine
+    container_name: djaingo-redis
+    env_file: [.env.prod]
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD}
+    volumes: [redis_data:/data]
+    restart: unless-stopped
+    networks: [djaingo-internal]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  djaingo-celery:
+    build: { context: ., dockerfile: Dockerfile }
+    container_name: djaingo-celery
+    command: celery -A Wowdash worker --loglevel=info --concurrency=2
+    env_file: [.env.prod]
+    depends_on:
+      djaingo-redis: { condition: service_healthy }
+    restart: unless-stopped
+    networks: [djaingo-internal, gethub-network]
+
+  djaingo-beat:
+    build: { context: ., dockerfile: Dockerfile }
+    container_name: djaingo-beat
+    command: celery -A Wowdash beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    env_file: [.env.prod]
+    depends_on:
+      djaingo-redis: { condition: service_healthy }
+    restart: unless-stopped
+    networks: [djaingo-internal, gethub-network]
+
+volumes:
+  pg_data: { driver: local }
+  redis_data: { driver: local }
+  static_files: { driver: local }
+  media_files: { driver: local }
+
+networks:
+  djaingo-internal: { driver: bridge }
+  gethub-network:
+    external: true
+    name: gethub_gethub-network
