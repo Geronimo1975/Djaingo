@@ -7,3 +7,5 @@ staticfiles/
 node_modules/
 media/*
 !media/.gitkeep
+logs/*.log
+.DS_Store

@@ -1,0 +1,35 @@
+{% extends 'partials/layout/layout3.html' %}
+{% load static %}
+{% block content %}
+
+<div class="rbt-main-content mb--0">
+    <div class="rbt-daynamic-page-content center-width">
+
+        <!-- Dashboard Center Content -->
+        <div class="rbt-dashboard-content rainbow-section-gap">
+            <div class="banner-area">
+                <!-- AiWavesmall Slider -->
+                <div class="settings-area">
+                    <h1 class="title">Privacy Policy</h1>
+                </div>
+            </div>
+            <div class="content-page pb--50">
+                <div class="chat-box-list">
+                    <div class="content">
+                        {% if privacy_content %}
+                            {{ privacy_content|safe }}
+                        {% else %}
+                        <h4>Welcome to AiWavePrivacy Policy</h4>
+                            <ol>
+                                <li>No terms and conditions have been set yet.</li>
+                            </ol>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}

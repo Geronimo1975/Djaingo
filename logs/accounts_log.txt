@@ -1,0 +1,261 @@
+Time: 2025-08-01 11:41:55.857990
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.'], '__all__': ['Maximum of 3 team members can be featured.']}
+
+--------------------------------------------------
+Time: 2025-08-01 11:42:01.320882
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 11:45:16.827491
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 11:53:12.063256
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:02:44.277705
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:19:42.262384
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:27:16.163716
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:27:22.664999
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:27:35.764790
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:27:50.943394
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:28:13.051932
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 12:41:56.923619
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 14:02:45.936703
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 217, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'name': ['This field cannot be null.'], 'position': ['This field cannot be null.']}
+
+--------------------------------------------------
+Time: 2025-08-01 14:14:47.788251
+Location: C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py, line 1556, in full_clean
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\wowdash_app\views\wowdash.py", line 218, in edit_team_member
+    edit_team_member_bal(member_id, name, position, order, featured, photo)
+  File "E:\code\projects\django\aiwave\Bal\wowdash_app\wowdash.py", line 92, in edit_team_member_bal
+    return update_team_member(member, name, position, order, featured, photo)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\code\projects\django\aiwave\Dal\wowdash_app\wowdash.py", line 118, in update_team_member
+    member.save()
+  File "E:\code\projects\django\aiwave\wowdash_app\models.py", line 181, in save
+    self.full_clean()
+  File "C:\Users\Yunit moradiya\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\db\models\base.py", line 1556, in full_clean
+    raise ValidationError(errors)
+django.core.exceptions.ValidationError: {'__all__': ['Maximum of 3 team members can be featured.']}
+
+--------------------------------------------------
+Time: 2025-08-04 16:42:05.674375
+Location: E:\code\projects\django\aiwave\aiwave\views\pages.py, line 108, in blog
+Exception occurred:
+Traceback (most recent call last):
+  File "E:\code\projects\django\aiwave\aiwave\views\pages.py", line 108, in blog
+    raise ValueError("This is an intentional error for testing error handling")
+ValueError: This is an intentional error for testing error handling
+
+--------------------------------------------------

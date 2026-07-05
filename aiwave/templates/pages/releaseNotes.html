@@ -1,0 +1,63 @@
+{% extends 'partials/layout/layout3.html' %}
+{% load static %}
+{% block content %}
+
+<div class="rbt-main-content mb--0">
+    <div class="rbt-daynamic-page-content center-width">
+
+        <!-- Dashboard Center Content -->
+        <div class="rbt-dashboard-content rainbow-section-gap">
+            <div class="banner-area">
+                <div class="settings-area">
+                    <h3 class="title">Release Notes</h3>
+                </div>
+            </div>
+            <div class="content-page pb--50">
+                <div class="chat-box-list">
+                    <div class="content">
+                        {% for note in release_notes|dictsortreversed:"version" %}
+                        <div class="row changelog_info" id="v{{ note.version|slugify }}">
+                            <div class="col-lg-3 changelog_date">
+                                <div class="c_date">
+                                    <h6>{{ note.release_date|date:"d F Y" }}</h6>
+                                    <p>{{ note.heading }}</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="version_info">
+                                    <div class="c_version">
+                                        {{ note.version }}
+                                    </div>
+                                    <div class="line bottom_half"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="changelog_content">
+                                    {% for key, items in note.features.items %}
+                                        {% for item in items %}
+                                            <p>
+                                                <span class="{% if key == 'fixed' %}fixed{% elif key == 'updated' %}update{% elif key == 'improved' %}improve{% elif key == 'added' %}new{% endif %}">
+                                                    {{ key|capfirst }}
+                                                </span>
+                                                {{ item }}
+                                            </p>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="row">
+                            <div class="col-12 text-center py-5">
+                                <p class="text-muted">No release notes yet.</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
