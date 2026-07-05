@@ -155,8 +155,13 @@ ACCOUNT_SIGNUP_FIELDS = ['email', 'username', 'password1', 'password2']
 # ======================
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql' if os.getenv('POSTGRES_HOST')
+                  else 'django.db.backends.sqlite3',
+        'NAME': os.getenv('POSTGRES_DB', BASE_DIR / 'db.sqlite3'),
+        'USER': os.getenv('POSTGRES_USER', ''),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+        'HOST': os.getenv('POSTGRES_HOST', ''),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 
@@ -188,6 +193,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "wowdash_app",  # or use os.path.join if BASE_DIR isn't a Path object
     BASE_DIR / "aiwave",  # or use os.path.join if BASE_DIR isn't a Path object
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Behind Traefik TLS termination
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

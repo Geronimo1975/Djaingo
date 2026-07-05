@@ -24,7 +24,8 @@ def preload_env_vars():
      print("❌ Failed to preload EnvVars:", e)
 
 def get(key: str, default=None):
-    return _env_vars.get(key, default)
+    import os
+    return _env_vars.get(key) or os.environ.get(key, default)
 
 def all_vars():
     return dict(_env_vars)
