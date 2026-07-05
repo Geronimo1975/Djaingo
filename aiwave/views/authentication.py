@@ -68,8 +68,12 @@ def signin(request):
                     except Exception as e:
                         log_error_to_file(e)
                     # Get the next URL from the request
+                    from django.utils.http import url_has_allowed_host_and_scheme
                     next_url = request.GET.get('next')
-                    if next_url:
+                    if next_url and url_has_allowed_host_and_scheme(
+                        next_url, allowed_hosts={request.get_host()},
+                        require_https=request.is_secure()
+                    ):
                         return redirect(next_url)
                     # Get redirect URL based on user role
                     redirect_url = get_user_redirect_url_bal(user)

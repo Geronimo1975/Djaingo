@@ -28,6 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1')
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else []
+N8N_WEBHOOK_TOKEN = os.getenv('N8N_WEBHOOK_TOKEN', '')
 
 # Generate CSRF trusted origins from allowed hosts
 CSRF_TRUSTED_ORIGINS = []

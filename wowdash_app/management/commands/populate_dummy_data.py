@@ -580,16 +580,10 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('⚙️ Creating environment variables and settings...'))
         # Create environment variables
         env_vars = {
-            'OPENAI_API_KEY': 'sk-sample-key-for-testing-purposes-only',
-            'STRIPE_SECRET_KEY': 'sk_test_sample_key_for_testing',
-            'AWS_ACCESS_KEY_ID': 'AKIAIOSFODNN7EXAMPLE',
-            'AWS_SECRET_ACCESS_KEY': 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-            'DATABASE_URL': 'postgresql://user:password@localhost:5432/aiwave_db',
+            'DATABASE_URL': 'REPLACE_ME_IN_ENV',
             'REDIS_URL': 'redis://localhost:6379/0',
             'SMTP_HOST': 'smtp.gmail.com',
             'SMTP_PORT': '587',
-            'JWT_SECRET_KEY': 'your-super-secret-jwt-key-here',
-            'ENCRYPTION_KEY': 'your-32-character-encryption-key'
         }
         
         for key, value in env_vars.items():

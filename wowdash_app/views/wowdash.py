@@ -16,6 +16,9 @@ from Bal.wowdash_app.wowdash import (
     get_team_members, add_team_member_bal, edit_team_member_bal, delete_team_member_bal,
     get_user_query_by_id
 )
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+_staff_only = user_passes_test(lambda u: u.is_active and u.is_staff)
 
 
 def userInquiries(request):
@@ -51,6 +54,8 @@ def toggleQueryRead(request, query_id):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def deleteQuery(request, query_id):
     if request.method == 'POST':
         try:
@@ -61,6 +66,8 @@ def deleteQuery(request, query_id):
             return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'An error occurred.'}}, status=500)
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
+@login_required
+@_staff_only
 def deleteAllReadInquiries(request):
     if request.method == 'POST':
         try:
@@ -91,6 +98,8 @@ def faq(request):
 
 
 
+@login_required
+@_staff_only
 def faqCreate(request):
     if request.method == 'POST':
         try:
@@ -117,6 +126,8 @@ def faqCreate(request):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def faqEdit(request, faq_id):
     if request.method == 'POST':
         try:
@@ -132,6 +143,8 @@ def faqEdit(request, faq_id):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def faqDelete(request, faq_id):
     if request.method == 'POST':
         try:
@@ -143,6 +156,8 @@ def faqDelete(request, faq_id):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def faqToggleVisibility(request, faq_id):
     if request.method == 'POST':
         try:
@@ -168,6 +183,8 @@ def team(request):
     return render(request, 'team.html', context)
 
 
+@login_required
+@_staff_only
 def add_team_member(request):
     if request.method == 'POST':
         try:
@@ -196,6 +213,8 @@ def add_team_member(request):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def delete_team_member(request, member_id):
     if request.method == 'POST':
         try:
@@ -207,6 +226,8 @@ def delete_team_member(request, member_id):
     return JsonResponse({'success': False, 'alert': {'type': 'danger', 'message': 'Invalid request method.'}}, status=405)
 
 
+@login_required
+@_staff_only
 def edit_team_member(request, member_id):
     if request.method == 'POST':
         try:
@@ -278,6 +299,8 @@ def privacyPolicy(request):
                         'assets/js/custom/wowdash_app/customPrivacyPolicy.js']
     })
 
+@login_required
+@_staff_only
 def blogManagement(request):
     try:
         search_query = request.GET.get('search', '')
@@ -299,6 +322,8 @@ def blogManagement(request):
         log_error_to_file(e)
     return render(request, 'blog.html', context)
 
+@login_required
+@_staff_only
 def editBlog(request, post_id):
     try:
         post = get_object_or_404(Blog, id=post_id)
@@ -341,6 +366,8 @@ def editBlog(request, post_id):
 
     return render(request, 'blog.html', context)
 
+@login_required
+@_staff_only
 def blogDelete(request, post_id):
     try:
         if request.method == 'POST':
@@ -388,6 +415,8 @@ def releaseNotes(request):
         log_error_to_file(e)
         return JsonResponse({'success': False, 'error': str(e)}, status=500)
 
+@login_required
+@_staff_only
 def releaseNoteDelete(request, pk):
     try:
         if request.method == "POST":

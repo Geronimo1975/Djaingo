@@ -27,6 +27,14 @@ from django.urls import reverse
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 import markdown
+import hmac
+import bleach
+from django.conf import settings
+
+_ALLOWED_TAGS = ['p', 'br', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'blockquote',
+                 'code', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'hr', 'table',
+                 'thead', 'tbody', 'tr', 'th', 'td']
+_ALLOWED_ATTRS = {'a': ['href', 'title', 'rel'], 'img': ['src', 'alt', 'title']}
 
 
 def pricing(request):
@@ -123,7 +131,10 @@ def blogDetails(request, slug):
         context = get_blog_detail_data_bal(slug)
         # Convert markdown content to HTML if present
         if 'post' in context and hasattr(context['post'], 'content'):
-            context['post'].html_content = markdown.markdown(context['post'].content)
+            context['post'].html_content = bleach.clean(
+                markdown.markdown(context['post'].content, extensions=['extra']),
+                tags=_ALLOWED_TAGS, attributes=_ALLOWED_ATTRS, strip=True,
+            )
     except Exception as e:
         return log_and_redirect_to_error_page(e)
     
@@ -352,6 +363,10 @@ def deleteBlog(request, pk):
 @csrf_exempt
 def n8n_create_blog(request):
     """Endpoint for n8n HTTP node to create a blog post automatically."""
+    expected = getattr(settings, 'N8N_WEBHOOK_TOKEN', '') or ''
+    provided = request.headers.get('X-Webhook-Token', '')
+    if not expected or not hmac.compare_digest(provided, expected):
+        return JsonResponse({'status': 'error', 'message': 'Unauthorized'}, status=401)
     if request.method != 'POST':
         return JsonResponse({'status': 'error', 'message': 'Only POST allowed'}, status=405)
 
