@@ -85,7 +85,7 @@ def signin(request):
         'field_errors': field_errors,
         'title': 'Signin',
         'subtitle': 'AI Wave',
-        'script': 'js\custom\pop_up_model\otpPasswordModel.js'
+        'script': r'js\custom\pop_up_model\otpPasswordModel.js'
     })
 
 

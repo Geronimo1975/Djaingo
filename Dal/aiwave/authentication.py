@@ -9,6 +9,7 @@ from django.utils import timezone
 from datetime import timedelta
 from wowdash_app.utils import log_error_to_file
 import random
+import secrets
 from wowdash_app.env_cache import get
 
 def get_user_by_email_dal(email):
@@ -140,8 +141,8 @@ def send_welcome_email_dal(to_email, username):
 def set_user_otp_dal(user):
     """Set OTP for user password reset"""
     try:
-        # Generate 6-digit OTP
-        otp = str(random.randint(100000, 999999))
+        # Generate cryptographically-secure 6-digit OTP
+        otp = str(100000 + secrets.randbelow(900000))
         # Set OTP valid for 5 minutes
         otp_valid_until = timezone.now() + timedelta(minutes=5)
         # Update or create OTP record

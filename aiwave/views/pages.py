@@ -103,7 +103,7 @@ def profile(request):
     return render(request, 'pages/profileDetails.html', {
         'title': 'View Profile',
         'subtitle': 'View Profile',
-        'script': 'js\custom\pages\customProfileDetails.js',
+        'script': r'js\custom\pages\customProfileDetails.js',
         'profile': profile,
         'user': request.user,
     })
@@ -245,7 +245,7 @@ def sessionsPage(request):
     return render(request, 'pages/sessions.html', {
         'title': 'Active Sessions',
         'subtitle': 'Manage your active sessions',
-        'script': 'js\custom\pages\customSessions.js',
+        'script': r'js\custom\pages\customSessions.js',
     })
 
 @login_required

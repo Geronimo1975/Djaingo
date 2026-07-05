@@ -1,4 +1,5 @@
 import random
+import secrets
 from wowdash_app.env_cache import get
 import google.generativeai as genai
 import traceback, os, datetime
@@ -35,8 +36,8 @@ def send_message_to_gemini(message):
 
 
 def generate_otp():
-    """Generate a 4-digit OTP as a string."""
-    return ''.join([str(random.randint(0, 9)) for _ in range(4)])
+    """Generate a cryptographically-secure 4-digit OTP as a string."""
+    return ''.join([str(secrets.randbelow(10)) for _ in range(4)])
 
 def set_reset_email(email, request):
     """
