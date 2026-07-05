@@ -152,6 +152,26 @@ ACCOUNT_SESSION_REMEMBER = None
 ACCOUNT_LOGIN_METHODS = {'email'}
 ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
 
+# Social providers defined in settings (not DB) so the signin template's
+# {% provider_login_url %} tags never raise SocialApp.DoesNotExist. Credentials
+# come from env; when blank the buttons render but OAuth completes only once set.
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APPS': [{
+            'client_id': os.getenv('GOOGLE_CLIENT_ID', ''),
+            'secret': os.getenv('GOOGLE_CLIENT_SECRET', ''),
+            'key': '',
+        }],
+    },
+    'facebook': {
+        'APPS': [{
+            'client_id': os.getenv('FACEBOOK_APP_ID', ''),
+            'secret': os.getenv('FACEBOOK_APP_SECRET', ''),
+            'key': '',
+        }],
+    },
+}
+
 # ======================
 # Database
 # ======================
