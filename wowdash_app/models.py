@@ -31,6 +31,10 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+    # Skip during loaddata/fixtures: raw rows carry their own UserProfile,
+    # so auto-creating here collides on the OneToOne user_id.
+    if kwargs.get("raw"):
+        return
     if created:
         UserProfile.objects.create(user=instance)
 

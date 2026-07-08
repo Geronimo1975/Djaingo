@@ -9,3 +9,7 @@ media/*
 !media/.gitkeep
 logs/*.log
 .DS_Store
+
+# Logo assets (belong in media, not the repo)
+Djaingo_logo_pack/
+Djaingo_logo_pack.zip
